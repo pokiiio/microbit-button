@@ -15,4 +15,4 @@ Read button data on BBC micro:bit boards with Web Bluetooth API.
 
 ## Misc
 
- - https://www.instagram.com/p/BedTahKlj1a/
+ - https://www.instagram.com/p/BenePwyFfqh/
