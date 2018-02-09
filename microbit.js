@@ -13,7 +13,7 @@ const BUTTON_B_DATA = "e95dda91-251d-470a-a062-fa1922dfa9a8";
 
 function onClickStartButton() {
   if (!navigator.bluetooth) {
-    alert("Web Bluetooth is not supported.")
+    showModal("Web Bluetooth is not supported.")
     return;
   }
 
@@ -22,7 +22,7 @@ function onClickStartButton() {
 
 function onClickStopButton() {
   if (!navigator.bluetooth) {
-    alert("Web Bluetooth is not supported.")
+    showModal("Web Bluetooth is not supported.")
     return;
   }
 
@@ -41,14 +41,14 @@ function requestDevice() {
       connect(targetDevice);
     })
     .catch(error => {
-      alert(error);
+      showModal(error);
       targetDevice = null;
     });
 }
 
 function disconnect() {
   if (targetDevice == null) {
-    alert('target device is null.');
+    showModal('target device is null.');
     return;
   }
 
@@ -61,7 +61,7 @@ function connect(device) {
       findButtonService(server);
     })
     .catch(error => {
-      alert(error);
+      showModal(error);
     });
 }
 
@@ -72,7 +72,7 @@ function findButtonService(server) {
       findButtonBCharacteristic(service);
     })
     .catch(error => {
-      alert(error);
+      showModal(error);
     });
 }
 
@@ -82,7 +82,7 @@ function findButtonACharacteristic(service) {
       startButtonANotification(characteristic);
     })
     .catch(error => {
-      alert(error);
+      showModal(error);
     });
 }
 
@@ -105,7 +105,7 @@ function findButtonBCharacteristic(service) {
       startButtonBNotification(characteristic);
     })
     .catch(error => {
-      alert(error);
+      showModal(error);
     });
 }
 
@@ -137,4 +137,9 @@ function updateButtonState(buttonName, state) {
       img.src = buttonName == "a_button" ? "a_pressed_long.png" : "b_pressed_long.png";
       break;
   }
+}
+
+function showModal(message) {
+  document.getElementsByName("modal-message")[0].innerHTML = message;
+  $("#myModal").modal("show");
 }
